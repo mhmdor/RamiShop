@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Admin </title>
+    <title>المتجر </title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -45,7 +45,7 @@
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
         <a class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-            <h2 class="m-0 text-primary"><i class="fa fa-bell me-3"></i>Admin</h2>
+            <h2 class="m-0 text-primary"><i class="fa fa-shopping-bag me-3"></i>المتجر</h2>
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -63,15 +63,13 @@
                         <a href="404.html" class="dropdown-item">404 Page</a>
                     </div>
                 </div> --}}
-                <a 
-                {{-- href="{{ route('admin.logout') }}" --}}
-                 class="nav-item nav-link">تسجيل خروج</a>
+                <a {{-- href="{{ route('admin.logout') }}" --}} class="nav-item nav-link">تسجيل خروج</a>
             </div>
             {{-- <a  class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">10000  <i class="fa fa-book me-3"></i></a> --}}
         </div>
     </nav>
     <!-- Navbar End -->
-{{-- 
+    {{-- 
     <div class="ticker-wrapper-h">
         <div class="heading">آخر الأخبار</div>
 
@@ -101,64 +99,113 @@
                 @endif
             </div>
             <div class="row g-4">
-              
-              <div class="col-lg-3 col-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <a  >
+
+                <div class="col-lg-4 col-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <a>
                         <div class="service-item text-center pt-3">
 
                             <div class="p-4">
-                                <i class="fa fa-3x fa-folder text-primary mb-4"></i>
-                                <h5 class="mb-3">البحث السريع</h5>
+                                <i class="fa fa-3x fa-archive text-primary mb-4"></i>
+                                <h5 class="mb-3">المخزن</h5>
 
                             </div>
                         </div>
                     </a>
                 </div>
-              
-             <!--  <div class="col-lg-3 col-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <a href="https://new.abk-sy.com/admin/dashboard1" target="_blank" >
+
+                <div class="col-lg-4 col-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <a>
                         <div class="service-item text-center pt-3">
 
                             <div class="p-4">
-                                <i class="fa fa-3x fa-folder text-primary mb-4"></i>
-                                <h5 class="mb-3"> محاسبة </h5>
+                                <i class="fa fa-3x fa-shopping-basket text-primary mb-4"></i>
+                                <h5 class="mb-3">اضافة مبيع</h5>
 
                             </div>
                         </div>
                     </a>
-                </div> -->
-              
-                 
-                <div class="col-lg-3 col-6 wow fadeInUp" data-wow-delay="0.1s">
-                    {{-- <a href="{{ route('admin.getPoints') }}"> --}}
+                </div>
+
+                <div class="col-lg-4 col-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <a>
                         <div class="service-item text-center pt-3">
 
                             <div class="p-4">
-                                <i class="fa fa-3x fa-user text-primary mb-4"></i>
-
-                                <h5 class="mb-3">شحن و خصم رصيد</h5>
+                                <i class="fa fa-3x fa-upload text-primary mb-4"></i>
+                                <h5 class="mb-3">اضافة للمخزن</h5>
 
                             </div>
                         </div>
-                    {{-- </a> --}}
+                    </a>
                 </div>
-              
-              <div class="col-lg-3 col-6 wow fadeInUp" data-wow-delay="0.1s">
-              
-               
-              
-              
-                
+                <div class="col-lg-4 col-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <a>
+                        <div class="service-item text-center pt-3">
+
+                            <div class="p-4">
+                                <i class="fa fa-3x fa-window-close text-primary mb-4"></i>
+                                <h5 class="mb-3"> إضافة مرتجع</h5>
+
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <a>
+                        <div class="service-item text-center pt-3">
+
+                            <div class="p-4">
+                                <i class="fa fa-3x  fa-credit-card text-primary mb-4"></i>
+                                <h5 class="mb-3">المبيعات</h5>
+
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-lg-4 col-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <a>
+                        <div class="service-item text-center pt-3">
+
+                            <div class="p-4">
+                                <i class="fa fa-3x  fa-credit-card text-primary mb-4"></i>
+                                <h5 class="mb-3">المرتجعات</h5>
+
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-lg-4 col-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <a>
+                        <div class="service-item text-center pt-3">
+
+                            <div class="p-4">
+                                <i class="fa fa-3x  fa-credit-card text-primary mb-4"></i>
+                                <h5 class="mb-3">التوالف</h5>
+
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
 
                
+
                
-               
 
 
-              
 
 
-              
+
+
+
+
+
+
+
+
+
                 {{-- <div class="modal fade" id="exampleModal23" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog">
@@ -199,10 +246,10 @@
                     </div>
                 </div> 
                --}}
-              
 
 
-              
+
+
                 {{-- <div class="modal fade" id="exampleModal24" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog">
@@ -244,7 +291,7 @@
                 </div>  --}}
 
 
-                
+
 
 
             </div>
