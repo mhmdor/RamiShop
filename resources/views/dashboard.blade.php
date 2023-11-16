@@ -52,35 +52,14 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                {{-- <a href="index.html" class="nav-item nav-link active">Home</a>
-                <a href="about.html" class="nav-item nav-link">About</a> --}}
-
-                {{-- <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                    <div class="dropdown-menu fade-down m-0">
-
-                        <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                        <a href="404.html" class="dropdown-item">404 Page</a>
-                    </div>
-                </div> --}}
-                <a {{-- href="{{ route('admin.logout') }}" --}} class="nav-item nav-link">تسجيل خروج</a>
+                
+                <a href="{{ route('logout') }}" class="nav-item nav-link">تسجيل خروج</a>
             </div>
             {{-- <a  class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">10000  <i class="fa fa-book me-3"></i></a> --}}
         </div>
     </nav>
     <!-- Navbar End -->
-    {{-- 
-    <div class="ticker-wrapper-h">
-        <div class="heading">آخر الأخبار</div>
-
-        <ul class="news-ticker-h">
-            @foreach ($lines as $item)
-                <li><a>{{ $item->content }}</a></li>
-            @endforeach
-
-
-        </ul>
-    </div> --}}
+  
 
 
 
@@ -101,7 +80,7 @@
             <div class="row g-4">
 
                 <div class="col-lg-4 col-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <a>
+                    <a href="{{route('storage')}}">
                         <div class="service-item text-center pt-3">
 
                             <div class="p-4">

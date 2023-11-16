@@ -7,7 +7,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
-    <meta http-equiv="refresh" content="20">
+   
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
@@ -47,28 +47,14 @@
 
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
-        <a  class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-            <h2 class="m-0 text-primary"><i class="fa fa-book me-3"></i>Orders</h2>
-        </a>
-        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+      
         <div class="collapse navbar-collapse" id="navbarCollapse">
-            {{-- <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="index.html" class="nav-item nav-link">Home</a>
-                <a href="about.html" class="nav-item nav-link active">About</a>
-                <a href="courses.html" class="nav-item nav-link">Courses</a>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                    <div class="dropdown-menu fade-down m-0">
-                        <a href="team.html" class="dropdown-item">Our Team</a>
-                        <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                        <a href="404.html" class="dropdown-item">404 Page</a>
-                    </div>
-                </div>
-                <a href="contact.html" class="nav-item nav-link">Contact</a>
-            </div> --}}
-            <a href="{{'dashboard'}}" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Dashboard<i class="fa fa-arrow-right ms-3"></i></a>
+           
+            <a href="{{route('home')}}" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">الرئيسية<i class="fa fa-arrow-right ms-3"></i></a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+           
+            <a href="{{route('addProduct')}}" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block"> <h4>   اضافة منتج </h4></a>
         </div>
     </nav>
     <!-- Navbar End -->
@@ -79,7 +65,7 @@
         <div class="container py-1">
             <div class="row justify-content-center">
                 <div class="col-lg-10 text-center">
-                    <h1 style="font-size: 50px" class="display-3 text-white animated slideInDown">كل الطلبات</h1>
+                    <h1 style="font-size: 50px" class="display-3 text-white animated slideInDown">المخزن</h1>
                     
                 </div>
             </div>
@@ -107,90 +93,31 @@
             </tr>
         </thead>
         <tbody>
-            {{-- @foreach ($orders as $item)
+            @foreach ($all as $item)
 
            
             
             <tr>
                 <td>{{$item->id}}</td>
-                @if ($item->description =='وحدات')
-                <td>{{$item->companyCom->name}}</td> 
-                @elseif ($item->description =='الهاتف الارضي')
-                <td>Telephone</td> 
-                @else
-                <td>{{$item->company->name}}</td> 
-                @endif
-               
-                <td>{{$item->user->person_name}}</td>
-                <td>{{$item->phone_number}}</td>
-                <td>{{$item->price}}</td>
-                <td>{{$item->total_price}}</td>
-                <td>{{ $item->previous }}</td>
-                <td>{{ $item->current }}</td>
-                <td>{{ $item->created_at }}</td>
-                   @if ($item->description =='وحدات')
-                 @if ($item->companyCom->name == 'Syriatel')
-                <td>فاتورة</td> 
-                @elseif ($item->companyCom->name == 'Syriatel_K')
-                <td>كازية</td> 
-                @elseif ($item->companyCom->name == 'Syriatel_Cash')
-                <td>كاش</td> 
-                @elseif ($item->companyCom->name == 'Mtn')
-                <td>فاتورة</td> 
-                @elseif ($item->companyCom->name == 'Mtn_K')
-                <td>كازية</td> 
-                @elseif ($item->companyCom->name == 'Mtn_Cash')
-                <td>كاش</td> 
-              @elseif ($item->companyCom->name == 'Mtn_KF')
-                <td>جملة فاتورة</td> 
-                 @endif
-               @elseif ($item->description=='باقات')
-                @if ($item->price == '1000' || $item->price == '650' )
-                <td><span style="color: rgb(214, 45, 39);font-weight:bold">5G</span>  باقة</td>   
-                @elseif ($item->price == '1800' || $item->price == '1200')
-                <td><span style="color: rgb(214, 45, 39);font-weight:bold">10G</span>  باقة</td>
-                @elseif ($item->price == '3100' || $item->price == '2000')
-                <td><span style="color: rgb(214, 45, 39);font-weight:bold">20G</span>  باقة</td>
-                @elseif ($item->price == '4100' || $item->price == '2700')
-                <td><span style="color: rgb(214, 45, 39);font-weight:bold">30G</span>  باقة</td>
-                @elseif ($item->price == '6100' || $item->price == '3950')
-                <td><span style="color: rgb(214, 45, 39);font-weight:bold">50G</span>  باقة</td>
-                @elseif ($item->price == '7600' || $item->price == '4950')
-                <td><span style="color: rgb(214, 45, 39);font-weight:bold">75G</span>  باقة</td>
-                @elseif ($item->price == '10400' || $item->price == '6800')
-                <td><span style="color: rgb(214, 45, 39);font-weight:bold">100G</span>  باقة</td>
-                @elseif ($item->price == '19000' || $item->price == '12400')
-                <td><span style="color: rgb(214, 45, 39);font-weight:bold">200G</span>  باقة</td>   
-              @elseif ($item->price == '1000' || $item->price == '780' )
-                <td><span style="color: rgb(214, 45, 39);font-weight:bold">5G</span>  باقة</td>   
-                @elseif ($item->price == '1800' || $item->price == '1350')
-                <td><span style="color: rgb(214, 45, 39);font-weight:bold">10G</span>  باقة</td>
-                @elseif ($item->price == '3100' || $item->price == '2350')
-                <td><span style="color: rgb(214, 45, 39);font-weight:bold">20G</span>  باقة</td>
-                @elseif ($item->price == '4100' || $item->price == '3150')
-                <td><span style="color: rgb(214, 45, 39);font-weight:bold">30G</span>  باقة</td>
-                @elseif ($item->price == '6100' || $item->price == '4650')
-                <td><span style="color: rgb(214, 45, 39);font-weight:bold">50G</span>  باقة</td>
-                @elseif ($item->price == '7600' || $item->price == '5850')
-                <td><span style="color: rgb(214, 45, 39);font-weight:bold">75G</span>  باقة</td>
-                @elseif ($item->price == '10400' || $item->price == '8000')
-                <td><span style="color: rgb(214, 45, 39);font-weight:bold">100G</span>  باقة</td>
-                @elseif ($item->price == '19000' || $item->price == '14600')
-                <td><span style="color: rgb(214, 45, 39);font-weight:bold">200G</span>  باقة</td>  
-               @else 
-                <td>باقات</td>  
-                    
-                @endif 
-                @else
-                <td>{{$item->description}}</td>
-                @endif
-                
+                <td>{{$item->name}}</td>
+                <td>{{$item->buy_price}}</td>
+                <td>{{$item->sell_price}}</td>
+                <td>{{$item->count}}</td>
                 <td>
-                    <form method="POST" action="{{route('accept.order',['id'=>$item->id])}}">
+                    {{-- <button type="button">
+                        <a href="{{route('editProduct/'.$item->id)}}">تعديل</a>
+                    </button> --}}
+                    
+                    <form method="POST" action="{{route('showEditProduct',['id'=>$item->id])}}">
                         @csrf
-                     <button type="submit"  class="btn btn-success"> قبول  </button>  
+                     <button type="submit"  class="btn btn-success"> تعديل  </button>  
                     </form>
 
+                    <form method="POST" action="{{route('deleteProduct',['id'=>$item->id])}}">
+                        @csrf
+                     <button type="submit"  class="btn btn-danger"> حذف  </button>  
+                    </form>
+{{-- 
                     <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{$item->id}}n">
                         رفض الطلب
                       </button>
@@ -231,12 +158,12 @@
                           </div>
                         </div>
                       </div>
-                    
+                     --}}
                 </td>
           
           
             </tr>
-            @endforeach --}}
+            @endforeach
             
          
         </tbody>

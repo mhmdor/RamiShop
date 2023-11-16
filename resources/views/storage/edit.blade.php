@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Login</title>
+    <title>add</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
@@ -15,16 +15,13 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assetsform/vendor/animate/animate.css') }}">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('/assetsform/vendor/css-hamburgers/hamburgers.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/assetsform/vendor/css-hamburgers/hamburgers.min.css') }}">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('/assetsform/vendor/animsition/css/animsition.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/assetsform/vendor/animsition/css/animsition.min.css') }}">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{ asset('/assetsform/vendor/select2/select2.min.css') }}">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('/assetsform/vendor/daterangepicker/daterangepicker.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/assetsform/vendor/daterangepicker/daterangepicker.css') }}">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{ asset('/assetsform/css/util.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/assetsform/css/main.css') }}">
@@ -37,19 +34,19 @@
     <div class="container-contact100">
         <div class="wrap-contact100">
 
-            <form method="POST" action="{{route('login')}}" class="contact100-form validate-form">
+            <form method="POST" action="{{ route('editProduct') }}" class="contact100-form validate-form">
                 @csrf
                 <span class="contact100-form-title">
-                    تسجيل دخول
+                    تعديل منتج
                 </span>
 
+                <input type="text" name="id" value="{{ $item->id }}" id="id" hidden>
+                <div class="wrap-input100 validate-input" data-validate="name is required">
+                    <span class="label-input100">الأسم</span>
+                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
+                        name="name" value="{{ $item->name }}" required autocomplete="name" autofocus>
 
-                <div class="wrap-input100 validate-input" data-validate="email is required">
-                    <span class="label-input100">الأيميل</span>
-                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                        name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                    @error('email')
+                    @error('name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -57,18 +54,45 @@
                     <span class="focus-input100"></span>
                 </div>
 
-                <div class="wrap-input100 validate-input" data-validate="password is required">
-                    <span class="label-input100">كلمة السر</span>
-                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
-                        name="password" required autocomplete="current-password">
+                <div class="wrap-input100 validate-input" data-validate="buy_price is required">
+                    <span class="label-input100">سعر الشراء</span>
+                    <input id="buy_price" type="number" class="form-control @error('buy_price') is-invalid @enderror"
+                        name="buy_price" value="{{ $item->buy_price }}" required autocomplete="buy_price" autofocus>
 
-                    @error('password')
+                    @error('buy_price')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                     <span class="focus-input100"></span>
                 </div>
+
+                <div class="wrap-input100 validate-input" data-validate="sell_price is required">
+                    <span class="label-input100">سعر المبيع</span>
+                    <input id="sell_price" type="number" class="form-control @error('sell_price') is-invalid @enderror"
+                        name="sell_price" value="{{ $item->sell_price }}" required autocomplete="sell_price" autofocus>
+
+                    @error('sell_price')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input" data-validate="count is required">
+                    <span class="label-input100">الكمية</span>
+                    <input id="count" type="number" class="form-control @error('count') is-invalid @enderror"
+                        name="count" value="{{ $item->count }}" required autocomplete="count" autofocus>
+
+                    @error('count')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                    <span class="focus-input100"></span>
+                </div>
+
 
 
 
@@ -78,7 +102,7 @@
                         <div class="contact100-form-bgbtn"></div>
                         <button type="submit" class="contact100-form-btn">
                             <span>
-                                سجل دخول الآن
+                                تعديل
                                 <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
                             </span>
                         </button>
