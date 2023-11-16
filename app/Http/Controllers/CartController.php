@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
+    public function indexItem()
+    {
+        $all = Storage::all();
+        return view('cart.storage', compact('all'));
+    }
     public function index()
     {
         $cart = Cart::where('is_active', true)->first();

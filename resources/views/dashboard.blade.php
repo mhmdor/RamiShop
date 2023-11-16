@@ -93,7 +93,7 @@
                 </div>
 
                 <div class="col-lg-4 col-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <a>
+                    <a href="{{route('indexItem')}}">
                         <div class="service-item text-center pt-3">
 
                             <div class="p-4">

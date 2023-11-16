@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\StorageController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +38,7 @@ Route::post('/updateProduct', [StorageController::class, 'update'])->name('editP
 
 Route::post('/deleteProduct', [StorageController::class, 'delete'])->name('deleteProduct');
 
+Route::get('/indexItem', [CartController::class, 'indexItem'])->name('indexItem');
 // Route::get('/storage', function () {
 //     return view('storage');
 // });
