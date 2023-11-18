@@ -38,7 +38,19 @@ Route::post('/updateProduct', [StorageController::class, 'update'])->name('editP
 
 Route::post('/deleteProduct', [StorageController::class, 'delete'])->name('deleteProduct');
 
-Route::get('/indexItem', [CartController::class, 'indexItem'])->name('indexItem');
+Route::get('/indexItem', [CartController::class, 'index'])->name('indexItem');
+
+Route::post('/store', [CartController::class, 'store'])->name('storeItem');
+
+Route::get('/cart', [CartController::class, 'indexCart'])->name('cart');
+
+Route::post('/deleteItem', [CartController::class, 'deleteItem'])->name('deleteItem');
+
+Route::post('/editCount', [CartController::class, 'editCount'])->name('editCount');
+
+Route::post('/deleteCart', [CartController::class, 'deleteCart'])->name('deleteCart');
+
+Route::post('/confirmCart', [CartController::class, 'confirmCart'])->name('confirmCart');
 // Route::get('/storage', function () {
 //     return view('storage');
 // });

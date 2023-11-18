@@ -9,29 +9,39 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    public function indexItem()
-    {
-        $all = Storage::all();
-        return view('cart.storage', compact('all'));
-    }
+    
     public function index()
     {
+        $all = Storage::all();
         $cart = Cart::where('is_active', true)->first();
         if (!$cart) {
             $cart = Cart::create([]);
         }
         //must compact $cart and $cart->items;
-        return view();
+        return view('cart.storage',compact('all','cart'));
+    }
+
+    public function indexCart()
+    {
+       
+       
+        $cart = Cart::where('is_active', true)->first();
+
+       
+       
+        //must compact $cart and $cart->items;
+        return view('cart.cart',compact('cart'));
     }
 
 
 
     public function store(Request $request)
     {
+        
         $request->validate([
-            'item_id' => $request->item_id,
-            'count' => $request->count,
-            'cart_id' => $request->cart_id,
+            'item_id' => 'required',
+            'count' => 'required',
+            'cart_id' =>'required',
         ]);
         $item = Storage::find($request->item_id);
         $cart_item = CartItem::create([
@@ -40,7 +50,7 @@ class CartController extends Controller
             'item_id' => $request->item_id,
             'price' => $item->sell_price
         ]);
-        return redirect()->back()->with('message', 'add successfully');
+        return redirect()->back()->with('message', 'تمت الاضافة للسلة');
     }
 
     public function editCount(Request $request)
@@ -55,7 +65,7 @@ class CartController extends Controller
     {
         $item = CartItem::findOrFail($request->id);
         $item->delete();
-        return redirect()->back()->with('message', 'delete successfully');
+        return redirect()->back()->with('message', 'تم الحذف من السلة');
     }
 
     public function deleteCart(Request $request)
@@ -63,7 +73,7 @@ class CartController extends Controller
         $cart = Cart::findOrFail($request->id);
         $cartItem = CartItem::where('cart_id', $cart->id)->delete();
         $cart->delete();
-        return redirect()->back()->with('message', 'تم الحذف بنجاح');
+        return redirect()->route('home')->with('message', 'تم الحذف بنجاح');
     }
 
     public function confirmCart(Request $request)
@@ -72,10 +82,10 @@ class CartController extends Controller
         $cart->is_active = false;
         $cart->save();
         foreach ($cart->items as $item) {
-            $storage = Storage::find($item->storage_id);
+            $storage = Storage::find($item->item_id);
             $storage->count = $storage->count - $item->count;
             $storage->save();
         }
-        return redirect()->back()->with('message', 'تمت العملية بنجاح');
+        return redirect()->route('home')->with('message', 'تمت العملية بنجاح');
     }
 }

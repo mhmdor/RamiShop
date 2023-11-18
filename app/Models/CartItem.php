@@ -12,6 +12,6 @@ class CartItem extends Model
 
     public function item()
     {
-        return $this->belongsTo(Storage::class, 'storage_id');
+        return $this->belongsTo(Storage::class, 'item_id');
     }
 }
