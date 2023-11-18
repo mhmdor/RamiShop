@@ -30,6 +30,7 @@ class SaleReturnController extends Controller
         $item = Storage::findOrFail($request->item_id);
         if ($request->is_remove == false) {
             $item->count = $item->count + 1;
+            $item->save();
         }
     }
 }
