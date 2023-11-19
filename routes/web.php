@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\SaleReturnController;
 use App\Http\Controllers\StorageController;
 use Illuminate\Support\Facades\Route;
 
@@ -51,6 +52,18 @@ Route::post('/editCount', [CartController::class, 'editCount'])->name('editCount
 Route::post('/deleteCart', [CartController::class, 'deleteCart'])->name('deleteCart');
 
 Route::post('/confirmCart', [CartController::class, 'confirmCart'])->name('confirmCart');
+
+Route::get('/indexStorage', [SaleReturnController::class, 'indexStorage'])->name('indexStorage');
+
+
+Route::get('/indexNotRemove', [SaleReturnController::class, 'index'])->name('indexNotRemove');
+
+
+Route::get('/indexRemove', [SaleReturnController::class, 'indexRemove'])->name('indexRemove');
+
+Route::post('/storeReturned', [SaleReturnController::class, 'store'])->name('storeReturned');
+
+
 // Route::get('/storage', function () {
 //     return view('storage');
 // });

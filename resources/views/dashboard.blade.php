@@ -106,7 +106,7 @@
                 </div>
 
                 <div class="col-lg-4 col-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <a>
+                    <a  href="{{route('addProduct')}}">
                         <div class="service-item text-center pt-3">
 
                             <div class="p-4">
@@ -118,7 +118,7 @@
                     </a>
                 </div>
                 <div class="col-lg-4 col-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <a>
+                    <a href="{{route('indexStorage')}}">
                         <div class="service-item text-center pt-3">
 
                             <div class="p-4">
@@ -143,7 +143,7 @@
                 </div>
 
                 <div class="col-lg-4 col-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <a>
+                    <a href="{{route('indexNotRemove')}}">
                         <div class="service-item text-center pt-3">
 
                             <div class="p-4">
@@ -156,7 +156,7 @@
                 </div>
 
                 <div class="col-lg-4 col-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <a>
+                    <a href="{{route('indexRemove')}}">
                         <div class="service-item text-center pt-3">
 
                             <div class="p-4">

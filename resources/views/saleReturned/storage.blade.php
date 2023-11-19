@@ -55,41 +55,6 @@
                     class="fa fa-arrow-right ms-3"></i></a>
         </div>
 
-
-
-
-
-
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-
-            <form method="POST" action="{{ route('deleteCart') }}">
-                @csrf
-                <input type="text" name="id" value="{{ $cart->id }}" hidden>
-
-                <button type="submit" class="btn btn-danger py-4 px-lg-5 d-none d-lg-block">حذف السلة</button>
-            </form>
-
-
-        </div>
-
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-
-        <button type="button" class="btn btn-success py-4 px-lg-5 d-none d-lg-block" data-bs-toggle="modal"
-            data-bs-target="#staticBackdrop1{{ $cart->id }}n">
-             تأكيد الطلب
-        </button>
-        </div>
-
-        <!-- Modal -->
-        
-
-
-        
-
-
-
-
-
     </nav>
     <!-- Navbar End -->
 
@@ -99,7 +64,7 @@
         <div class="container py-1">
             <div class="row justify-content-center">
                 <div class="col-lg-10 text-center">
-                    <h1 style="font-size: 50px" class="display-3 text-white animated slideInDown">السلة</h1>
+                    <h1 style="font-size: 50px" class="display-3 text-white animated slideInDown">المبيع</h1>
 
                 </div>
             </div>
@@ -113,53 +78,41 @@
             </ul>
         </div>
     @endif
-
     <div style="margin-left:130px; width: 80%;"
         class="card-content table-responsive justify-content-center text-center">
-
         <table class="table table-bordered" id="example" width="100%" cellspacing="0">
             <thead>
                 <tr>
                     <th>رقم المنتح</th>
                     <th>الأسم</th>
 
-                    <th>كمية الطلب </th>
-                    <th>السعر الأجمالي</th>
+                    <th>سعر </th>
+
                     <th>العملية</th>
 
                 </tr>
             </thead>
             <tbody>
-                <tr>
-
-                </tr>
-                @foreach ($cart->items as $item)
+                @foreach ($all as $item)
                     <tr>
+                        <td>{{ $item->id }}</td>
+                        <td>{{ $item->name }}</td>
+                        <td>{{ $item->sell_price }}</td>
 
-                        <td>{{ $item->item->id }}</td>
-                        <td>{{ $item->item->name }}</td>
-                        <td>{{ $item->count }}</td>
-                        <td>{{ $item->price * $item->count }} </td>
                         <td>
 
 
-                            <form method="POST" action="{{ route('deleteItem') }}">
-                                @csrf
-                                <input type="text" name="id" value="{{ $item->id }}" hidden>
-
-                                <button type="submit" class="btn btn-danger">حذف</button>
-                            </form>
 
 
                             <button type="button" class="btn btn-dark" data-bs-toggle="modal"
                                 data-bs-target="#staticBackdrop{{ $item->id }}n">
-                                تعديل الكمية
+                                ترجيع المنتج
                             </button>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="staticBackdrop{{ $item->id }}n"
-                                data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal fade" id="staticBackdrop{{ $item->id }}n" data-bs-backdrop="static"
+                                data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -167,82 +120,66 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
+                                        {{-- <form method="POST" action="{{route('storeReturned')}}">
+                                            @csrf
+                                          
+                                        
+                                        <h5>تالف ؟</h5>
+                                         <select name="is_remove" id="is_remove">
+                                            <option value="true">نعم</option>
+                                            <option value="false">لا</option>
+                                         </select>
+                                         <button type="submit"  class="btn btn-success">ترجيع</button>  
+                                        </form> --}}
 
-                                        <form method="POST" action="{{ route('editCount') }}">
+                                        <form method="POST" action="{{ route('storeReturned') }}">
                                             @csrf
 
 
-                                            <input type="text" name="id" value="{{ $item->id }}" hidden>
+                                            <input type="text" name="item_id" value="{{ $item->id }}" hidden>
 
                                             <div class="modal-body">
                                                 <div class="wrap-input100 validate-input"
-                                                    data-validate="count is required">
-                                                    <span class="label-input100">تعديل الكمية</span>
-                                                    <input id="count" type="number"
-                                                        class="input100 form-control @error('count') is-invalid @enderror"
-                                                        name="count" required autocomplete="new-count">
+                                                    data-validate="reason is required">
+                                                    <span class="label-input100">سبب الترجيع</span>
+                                                    <input id="reason" type="text"
+                                                        class="input100 form-control @error('reason') is-invalid @enderror"
+                                                        name="reason" required autocomplete="new-reason">
 
-                                                    @error('count')
+                                                    @error('reason')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
                                                         </span>
                                                     @enderror
                                                     <span class="focus-input100"></span>
                                                 </div>
+
+                                                <div style="margin-top: 30px" class="wrap-input100 validate-input"
+                                                    data-validate="reason is required">
+                                                   
+
+                                                    <select class="" style="width:200px; text-align: center" name="is_remove" id="is_remove">
+                                                        <option value="0">لا</option>
+                                                        <option value="1">نعم</option>
+                                                        
+                                                    </select>
+
+                                                    <span  class="label-input100">  هل هي تالف ؟  </span>
+
+                                                    <span class="focus-input100"></span>
+                                                </div>
                                             </div>
+
+
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">اغلاق</button>
-                                                <button type="submit" class="btn btn-danger"> تعديل </button>
+                                                <button type="submit" class="btn btn-danger"> ترجيع </button>
                                             </div>
                                         </form>
                                     </div>
                                 </div>
                             </div>
-
-
-                            <div class="modal fade" id="staticBackdrop1{{ $cart->id }}n" data-bs-backdrop="static"
-                                data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdrop1Label" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="staticBackdrop1Label"></h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                    
-                                        <form method="POST" action="{{ route('confirmCart') }}">
-                                            @csrf
-                    
-                    
-                                            <input type="text" name="id" value="{{ $cart->id }}" hidden>
-                    
-                                             <div class="modal-body">
-                                        <div class="wrap-input100 validate-input"
-                                            data-validate="count is required">
-                                            <span class="label-input100">أسم السلة</span>
-                                            <input id="name" type="text"
-                                                class="input100 form-control @error('name') is-invalid @enderror"
-                                                name="name" required autocomplete="new-name">
-                    
-                                            @error('name')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                            <span class="focus-input100"></span>
-                                        </div>
-                                    </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">اغلاق</button>
-                                                <button type="submit" class="btn btn-danger"> تأكيد </button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                    
-
-
 
                         </td>
 

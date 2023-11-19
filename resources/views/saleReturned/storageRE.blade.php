@@ -54,12 +54,7 @@
             <a href="{{ route('home') }}" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">الرئيسية<i
                     class="fa fa-arrow-right ms-3"></i></a>
         </div>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
 
-            <a href="{{ route('cart') }}" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">
-                <h4>السلة</h4>
-            </a>
-        </div>
     </nav>
     <!-- Navbar End -->
 
@@ -69,7 +64,7 @@
         <div class="container py-1">
             <div class="row justify-content-center">
                 <div class="col-lg-10 text-center">
-                    <h1 style="font-size: 50px" class="display-3 text-white animated slideInDown">المبيع</h1>
+                    <h1 style="font-size: 50px" class="display-3 text-white animated slideInDown">المرتجعات</h1>
 
                 </div>
             </div>
@@ -92,79 +87,19 @@
                     <th>الأسم</th>
 
                     <th>سعر </th>
-                    <th>الكمية</th>
-                    <th>العملية</th>
+
+                    <th>سبب</th>
 
                 </tr>
             </thead>
             <tbody>
                 @foreach ($all as $item)
                     <tr>
-                        <td>{{ $item->id }}</td>
-                        <td>{{ $item->name }}</td>
-                        <td>{{ $item->sell_price }}</td>
-                        <td>{{ $item->count }}</td>
-                        <td>
-                            {{-- <button type="button">
-                        <a href="{{route('editProduct/'.$item->id)}}">تعديل</a>
-                    </button> --}}
+                        <td>{{ $item->item->id }}</td>
+                        <td>{{ $item->item->name }}</td>
+                        <td>{{ $item->item->sell_price }}</td>
 
-                          
-
-
-
-                            <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                data-bs-target="#staticBackdrop{{ $item->id }}n">
-                                اضافة للسلة
-                            </button>
-
-                            <!-- Modal -->
-                            <div class="modal fade" id="staticBackdrop{{ $item->id }}n" data-bs-backdrop="static"
-                                data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-                                aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="staticBackdropLabel"></h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-
-                                        <form method="POST" action="{{ route('storeItem') }}">
-                                            @csrf
-
-
-                                            <input type="text" name="cart_id" value="{{ $cart->id }}" hidden>
-                                            <input type="text" name="item_id" value="{{ $item->id }}" hidden>
-
-                                            <div class="modal-body">
-                                                <div class="wrap-input100 validate-input"
-                                                    data-validate="count is required">
-                                                    <span class="label-input100">الكمية</span>
-                                                    <input id="count" type="number"
-                                                        class="input100 form-control @error('count') is-invalid @enderror"
-                                                        name="count" required autocomplete="new-count">
-
-                                                    @error('count')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                    <span class="focus-input100"></span>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">اغلاق</button>
-                                                <button type="submit" class="btn btn-success"> اضافة للسلة </button>
-
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </td>
+                     <td>{{$item->reason}}</td>
 
 
                     </tr>

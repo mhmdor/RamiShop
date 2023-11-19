@@ -80,6 +80,7 @@ class CartController extends Controller
     {
         $cart = Cart::findOrFail($request->id);
         $cart->is_active = false;
+        $cart->name = $request->name;
         $cart->save();
         foreach ($cart->items as $item) {
             $storage = Storage::find($item->item_id);
