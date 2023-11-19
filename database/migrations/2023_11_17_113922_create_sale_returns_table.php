@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('sale_returns', function (Blueprint $table) {
             $table->id();
+            $table->tinyInteger('is_remove')->default(0);
             $table->unsignedBigInteger('item_id');
             $table->string('reason')->nullable();
             $table->timestamps();
