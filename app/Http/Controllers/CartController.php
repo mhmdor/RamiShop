@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    
+
     public function index()
     {
         $all = Storage::all();
@@ -18,32 +18,35 @@ class CartController extends Controller
             $cart = Cart::create([]);
         }
         //must compact $cart and $cart->items;
-        return view('cart.storage',compact('all','cart'));
+        return view('cart.storage', compact('all', 'cart'));
     }
 
     public function indexCart()
     {
-       
-       
+
+
         $cart = Cart::where('is_active', true)->first();
 
-       
-       
+
+
         //must compact $cart and $cart->items;
-        return view('cart.cart',compact('cart'));
+        return view('cart.cart', compact('cart'));
     }
 
 
 
     public function store(Request $request)
     {
-        
+
         $request->validate([
             'item_id' => 'required',
             'count' => 'required',
-            'cart_id' =>'required',
+            'cart_id' => 'required',
         ]);
         $item = Storage::find($request->item_id);
+        if ($item->count < $request->count) {
+            return redirect()->back()->with('error', 'لايوجد عدد كافي');
+        }
         $cart_item = CartItem::create([
             'cart_id' => $request->cart_id,
             'count' => $request->count,
