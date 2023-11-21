@@ -83,6 +83,14 @@
             </ul>
         </div>
     @endif
+@if (\Session::has('error'))
+        <div id="myElem" class="alert alert-danger text-center">
+            <ul>
+                <li>{!! \Session::get('error') !!}</li>
+            </ul>
+        </div>
+    @endif
+    
     <div style="margin-left:130px; width: 80%;"
         class="card-content table-responsive justify-content-center text-center">
         <table class="table table-bordered" id="example" width="100%" cellspacing="0">

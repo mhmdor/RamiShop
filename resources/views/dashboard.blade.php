@@ -98,7 +98,7 @@
 
                             <div class="p-4">
                                 <i class="fa fa-3x fa-shopping-basket text-primary mb-4"></i>
-                                <h5 class="mb-3">اضافة مبيع</h5>
+                                <h5 class="mb-3">البيع</h5>
 
                             </div>
                         </div>
@@ -106,12 +106,12 @@
                 </div>
 
                 <div class="col-lg-4 col-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <a  href="{{route('addProduct')}}">
+                    <a  href="{{route('showAddProduct')}}">
                         <div class="service-item text-center pt-3">
 
                             <div class="p-4">
                                 <i class="fa fa-3x fa-upload text-primary mb-4"></i>
-                                <h5 class="mb-3">اضافة للمخزن</h5>
+                                <h5 class="mb-3">اضافة مشتريات</h5>
 
                             </div>
                         </div>

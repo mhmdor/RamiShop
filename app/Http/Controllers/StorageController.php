@@ -15,8 +15,8 @@ class StorageController extends Controller
 
     public function add()
     {
-       
-        return view('storage.add');
+        $all = Storage::all();
+        return view('storage.add',compact('all'));
     }
     public function store(Request $request)
     {

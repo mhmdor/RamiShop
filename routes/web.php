@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BuyController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\SaleReturnController;
 use App\Http\Controllers\StorageController;
@@ -31,7 +32,7 @@ Route::get('/storage', [StorageController::class, 'index'])->name('storage');
 
 Route::get('/addProduct', [StorageController::class, 'add'])->name('showAddProduct');
 
-Route::post('/addProduct', [StorageController::class, 'store'])->name('addProduct');
+Route::post('/addProduct', [BuyController::class, 'store'])->name('addProduct');
 
 Route::post('/editProduct', [StorageController::class, 'edit'])->name('showEditProduct');
 
