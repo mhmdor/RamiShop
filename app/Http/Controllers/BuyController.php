@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Box;
 use App\Models\Buy;
 use App\Models\Storage;
 use Illuminate\Http\Request;
@@ -29,6 +30,15 @@ class BuyController extends Controller
             'sell_price' => $request->sell_price,
             'count' => $request->count,
         ]);
+
+        $box = Box::first();
+        if (!$box) {
+            $box = Box::create([]);
+        }
+        $box->update([
+            'amount' => $box->amount - $request->count * $request->buy_price
+        ]);
+
         $item = Storage::where('name', $request->item_name)->first();
         if ($item) {
             $item->update([
@@ -37,8 +47,15 @@ class BuyController extends Controller
                 'count' => $item->count + $request->count,
                 'distributor_id' => $request->distributor_id,
             ]);
+        } else {
+            Storage::create([
+                'name' => $request->item_name,
+                'buy_price' => $request->buy_price,
+                'sell_price' => $request->sell_price,
+                'count' => $request->count,
+                'distributor_id' => $request->distributor_id,
+            ]);
         }
         return redirect()->route('home')->with('message', 'تمت العملية بنجاح');
     }
-    
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Box;
 use App\Models\Cart;
 use App\Models\CartItem;
 use App\Models\Client;
@@ -86,12 +87,22 @@ class CartController extends Controller
         $cart->is_active = false;
         $cart->client_id = $request->client_id;
         $cart->save();
+        $gain = 0;
         foreach ($cart->items as $item) {
             $storage = Storage::find($item->item_id);
             $storage->count = $storage->count - $item->count;
+            $storage->number_buy = $storage->number_buy + 1;
             $storage->save();
+            $gain = $gain + $item->price * $item->count;
         }
-        if($request->client_id){
+        $box = Box::first();
+        if (!$box) {
+            $box = Box::create([]);
+        }
+        $box->update([
+            'amount' => $box->amount + $gain
+        ]);
+        if ($request->client_id) {
             $client  = Client::find($request->client_id);
             $client->buy_count = $client->buy_count + 1;
             $client->save();

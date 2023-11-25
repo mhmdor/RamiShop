@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Box;
 use App\Models\Client;
 use App\Models\SaleReturn;
 use App\Models\Storage;
@@ -11,13 +12,13 @@ class SaleReturnController extends Controller
 {
     public function index()
     {
-        $all = SaleReturn::where('is_remove',0)->get();
+        $all = SaleReturn::where('is_remove', 0)->get();
         return view('saleReturned.storageRE', compact('all'));
     }
 
     public function indexRemove()
     {
-        $all = SaleReturn::where('is_remove',1)->get();
+        $all = SaleReturn::where('is_remove', 1)->get();
         return view('saleReturned.storageRE', compact('all'));
     }
 
@@ -29,13 +30,13 @@ class SaleReturnController extends Controller
 
     public function store(Request $request)
     {
-      
+
         $request->validate([
             'item_id' => 'required',
             'is_remove' => 'required',
         ]);
 
-    
+
         // can send reason it's not required
 
         SaleReturn::create([
@@ -45,17 +46,25 @@ class SaleReturnController extends Controller
             'client_id' => $request->client_id,
         ]);
 
+
         $item = Storage::findOrFail($request->item_id);
         if ($request->is_remove == 0) {
             $item->count = $item->count + 1;
             $item->save();
         }
-        if($request->client_id){
+        $box = Box::first();
+        if (!$box) {
+            $box = Box::create([]);
+        }
+        $box->update([
+            'amount' => $box->amount + $item->sell_price
+        ]);
+        if ($request->client_id) {
             $client  = Client::find($request->client_id);
             $client->return_count = $client->return_count + 1;
             $client->save();
         }
 
-        return redirect()->route('home')->with('message','تم ارجاع المنتج بنجاح');
+        return redirect()->route('home')->with('message', 'تم ارجاع المنتج بنجاح');
     }
 }
