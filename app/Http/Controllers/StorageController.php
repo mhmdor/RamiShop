@@ -16,7 +16,7 @@ class StorageController extends Controller
     public function add()
     {
         $all = Storage::all();
-        return view('storage.add',compact('all'));
+        return view('storage.add', compact('all'));
     }
     public function store(Request $request)
     {
@@ -25,6 +25,7 @@ class StorageController extends Controller
             'buy_price' => 'required',
             'sell_price' => 'required',
             'count' => 'required',
+            'distributor_id' => 'required',
         ]);
 
         Storage::create([
@@ -32,6 +33,7 @@ class StorageController extends Controller
             'buy_price' => $request->buy_price,
             'sell_price' => $request->sell_price,
             'count' => $request->count,
+            'distributor_id' => $request->distributor_id,
         ]);
         return redirect()->route('home')->with('message', 'تمت اضافة المنتج بنجاح');
     }
@@ -39,7 +41,7 @@ class StorageController extends Controller
     public function edit(Request $request)
     {
         $item = Storage::findOrFail($request->id);
-        return view('storage.edit',compact('item'));
+        return view('storage.edit', compact('item'));
     }
 
     public function update(Request $request)
@@ -50,6 +52,7 @@ class StorageController extends Controller
             'buy_price' => $request->buy_price,
             'sell_price' => $request->sell_price,
             'count' => $request->count,
+            'distributor_id' => $request->distributor_id,
         ]);
         return redirect()->route('home')->with('message', 'تم تعديل المنتج بنجاح');
     }
@@ -60,5 +63,4 @@ class StorageController extends Controller
         $item->delete();
         return redirect()->back()->with('message', 'تم حذف المنتج');
     }
-
 }

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->tinyInteger('is_remove')->default(0);
             $table->unsignedBigInteger('item_id');
             $table->string('reason')->nullable();
+            $table->unsignedBigInteger('client_id')->nullable();
             $table->timestamps();
         });
     }

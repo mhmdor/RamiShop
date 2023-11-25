@@ -9,4 +9,9 @@ class Storage extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function distributor()
+    {
+        return $this->belongsTo(Distributor::class, 'distributor_id');
+    }
 }

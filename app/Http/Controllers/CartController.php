@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\CartItem;
+use App\Models\Client;
 use App\Models\Storage;
 use Illuminate\Http\Request;
 
@@ -83,12 +84,17 @@ class CartController extends Controller
     {
         $cart = Cart::findOrFail($request->id);
         $cart->is_active = false;
-        $cart->name = $request->name;
+        $cart->client_id = $request->client_id;
         $cart->save();
         foreach ($cart->items as $item) {
             $storage = Storage::find($item->item_id);
             $storage->count = $storage->count - $item->count;
             $storage->save();
+        }
+        if($request->client_id){
+            $client  = Client::find($request->client_id);
+            $client->buy_count = $client->buy_count + 1;
+            $client->save();
         }
         return redirect()->route('home')->with('message', 'تمت العملية بنجاح');
     }

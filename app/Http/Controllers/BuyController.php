@@ -16,14 +16,14 @@ class BuyController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
             'item_name' => 'required',
             'buy_price' => 'required',
             'sell_price' => 'required',
             'count' => 'required',
+            'distributor_id' => 'required',
         ]);
         Buy::create([
-            'name' => $request->name,
+            'distributor_id' => $request->distributor_id,
             'item_name' => $request->item_name,
             'buy_price' => $request->buy_price,
             'sell_price' => $request->sell_price,
@@ -35,6 +35,7 @@ class BuyController extends Controller
                 'buy_price' => $request->buy_price,
                 'sell_price' => $request->sell_price,
                 'count' => $item->count + $request->count,
+                'distributor_id' => $request->distributor_id,
             ]);
         }
         return redirect()->route('home')->with('message', 'تمت العملية بنجاح');

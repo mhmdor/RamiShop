@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('sell_price');
             $table->integer('count');
             $table->string('description')->nullable();
+            $table->unsignedBigInteger('distributor_id');
             $table->timestamps();
         });
     }

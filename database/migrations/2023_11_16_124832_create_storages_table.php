@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('buy_price');
             $table->integer('sell_price');
             $table->integer('count');
+            $table->unsignedBigInteger('distributor_id');
             $table->timestamps();
         });
     }
