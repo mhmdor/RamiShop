@@ -54,42 +54,12 @@
             <a href="{{ route('home') }}" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">الرئيسية<i
                     class="fa fa-arrow-right ms-3"></i></a>
         </div>
-
-
-
-
-
-
         <div class="collapse navbar-collapse" id="navbarCollapse">
 
-            <form method="POST" action="{{ route('deleteCart') }}">
-                @csrf
-                <input type="text" name="id" value="{{ $cart->id }}" hidden>
-
-                <button type="submit" class="btn btn-danger py-4 px-lg-5 d-none d-lg-block">حذف السلة</button>
-            </form>
-
-
+            <a href="{{ route('getAddDebtClient') }}" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">
+                <h4>إضافة دين لعميل</h4>
+            </a>
         </div>
-
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-
-            <button type="button" class="btn btn-success py-4 px-lg-5 d-none d-lg-block" data-bs-toggle="modal"
-                data-bs-target="#staticBackdrop1{{ $cart->id }}n">
-                تأكيد الطلب
-            </button>
-        </div>
-
-        <!-- Modal -->
-
-
-
-
-
-
-
-
-
     </nav>
     <!-- Navbar End -->
 
@@ -99,7 +69,7 @@
         <div class="container py-1">
             <div class="row justify-content-center">
                 <div class="col-lg-10 text-center">
-                    <h1 style="font-size: 50px" class="display-3 text-white animated slideInDown">السلة</h1>
+                    <h1 style="font-size: 50px" class="display-3 text-white animated slideInDown">العملاء</h1>
 
                 </div>
             </div>
@@ -113,46 +83,40 @@
             </ul>
         </div>
     @endif
+    @if (\Session::has('error'))
+        <div id="myElem" class="alert alert-danger text-center">
+            <ul>
+                <li>{!! \Session::get('error') !!}</li>
+            </ul>
+        </div>
+    @endif
 
     <div style="margin-left:130px; width: 80%;"
         class="card-content table-responsive justify-content-center text-center">
-
         <table class="table table-bordered" id="example" width="100%" cellspacing="0">
             <thead>
                 <tr>
-                    <th>رقم المنتح</th>
+                    <th>رقم العميل</th>
                     <th>الأسم</th>
-                    <th>كمية الطلب </th>
-                    <th>السعر الأجمالي</th>
+
+                    <th>الدين </th>
+
                     <th>العملية</th>
 
                 </tr>
             </thead>
             <tbody>
-                <tr>
-
-                </tr>
-                @foreach ($cart->items as $item)
+                @foreach ($all as $item)
                     <tr>
+                        <td>{{ $item->id }}</td>
+                        <td>{{ $item->client->name }}</td>
+                        <td>{{ $item->remain }}</td>
 
-                        <td>{{ $item->item->id }}</td>
-                        <td>{{ $item->item->name }}</td>
-                        <td>{{ $item->count }}</td>
-                        <td>{{ $item->price  }} </td>
                         <td>
 
-
-                            <form method="POST" action="{{ route('deleteItem') }}">
-                                @csrf
-                                <input type="text" name="id" value="{{ $item->id }}" hidden>
-
-                                <button type="submit" class="btn btn-danger">حذف</button>
-                            </form>
-
-
-                            <button type="button" class="btn btn-dark" data-bs-toggle="modal"
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal"
                                 data-bs-target="#staticBackdrop{{ $item->id }}n">
-                                تعديل الكمية
+                                اضافة دين
                             </button>
 
                             <!-- Modal -->
@@ -167,21 +131,24 @@
                                                 aria-label="Close"></button>
                                         </div>
 
-                                        <form method="POST" action="{{ route('editCount') }}">
+                                        <form method="POST" action="{{ route('updateDebtClient') }}">
                                             @csrf
 
 
-                                            <input type="text" name="id" value="{{ $item->id }}" hidden>
+                                            <input type="text" name="client_id" value="{{ $item->client->id }}"
+                                                hidden>
+
+                                            <input type="text" name="is_add" value="1" hidden>
 
                                             <div class="modal-body">
                                                 <div class="wrap-input100 validate-input"
-                                                    data-validate="count is required">
-                                                    <span class="label-input100">تعديل الكمية</span>
-                                                    <input id="count" type="number"
-                                                        class="input100 form-control @error('count') is-invalid @enderror"
-                                                        name="count" required autocomplete="new-count">
+                                                    data-validate="amount is required">
+                                                    <span class="label-input100">المبلغ</span>
+                                                    <input id="amount" type="text"
+                                                        class="input100 form-control @error('amount') is-invalid @enderror"
+                                                        name="amount" required autocomplete="new-amount">
 
-                                                    @error('count')
+                                                    @error('amount')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
                                                         </span>
@@ -191,8 +158,8 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">اغلاق</button>
-                                                <button type="submit" class="btn btn-danger"> تعديل </button>
+                                                    data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-danger"> اضافة </button>
                                             </div>
                                         </form>
                                     </div>
@@ -200,52 +167,41 @@
                             </div>
 
 
-                            <div class="modal fade" id="staticBackdrop1{{ $cart->id }}n"
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                data-bs-target="#staticBackdrop{{ $item->id }}s">
+                                خصم دين
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="staticBackdrop{{ $item->id }}s"
                                 data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                                aria-labelledby="staticBackdrop1Label" aria-hidden="true">
+                                aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="staticBackdrop1Label"></h5>
+                                            <h5 class="modal-title" id="staticBackdropLabel"></h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
 
-                                        <form method="POST" action="{{ route('confirmCart') }}">
+                                        <form method="POST" action="{{ route('updateDebtClient') }}">
                                             @csrf
 
 
-                                            <input type="text" name="id" value="{{ $cart->id }}" hidden>
+                                            <input type="text" name="client_id" value="{{ $item->client->id }}"
+                                                hidden>
 
-
+                                            <input type="text" name="is_add" value="0" hidden>
 
                                             <div class="modal-body">
-
                                                 <div class="wrap-input100 validate-input"
-                                                    data-validate="name is required">
-                                                    <span class="label-input100">العميل</span>
-                                                    <select class="form-control"  name="client_id"
-                                                        id="client_id">
-                                                        <option value=""></option>
-                                                        @foreach ($dis as $item)
-                                                            <option value="{{ $item->id }}">{{ $item->name }}
-                                                            </option>
-                                                        @endforeach
+                                                    data-validate="amount is required">
+                                                    <span class="label-input100">المبلغ</span>
+                                                    <input id="amount" type="text"
+                                                        class="input100 form-control @error('amount') is-invalid @enderror"
+                                                        name="amount" required autocomplete="new-amount">
 
-                                                    </select>
-
-
-
-                                                    <span class="focus-input100"></span>
-                                                </div>
-                                                <div class="wrap-input100 validate-input"
-                                                    data-validate="count is required">
-                                                    <span class="label-input100">أسم السلة</span>
-                                                    <input id="name" type="text"
-                                                        class="input100 form-control @error('name') is-invalid @enderror"
-                                                        name="name" required autocomplete="new-name">
-
-                                                    @error('name')
+                                                    @error('amount')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
                                                         </span>
@@ -255,13 +211,14 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">اغلاق</button>
-                                                <button type="submit" class="btn btn-danger"> تأكيد </button>
+                                                    data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-danger"> خصم </button>
                                             </div>
                                         </form>
                                     </div>
                                 </div>
                             </div>
+
 
 
 

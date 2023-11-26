@@ -15,13 +15,16 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assetsform/vendor/animate/animate.css') }}">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('/assetsform/vendor/css-hamburgers/hamburgers.min.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('/assetsform/vendor/css-hamburgers/hamburgers.min.css') }}">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('/assetsform/vendor/animsition/css/animsition.min.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('/assetsform/vendor/animsition/css/animsition.min.css') }}">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{ asset('/assetsform/vendor/select2/select2.min.css') }}">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('/assetsform/vendor/daterangepicker/daterangepicker.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('/assetsform/vendor/daterangepicker/daterangepicker.css') }}">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{ asset('/assetsform/css/util.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/assetsform/css/main.css') }}">
@@ -34,39 +37,19 @@
     <div class="container-contact100">
         <div class="wrap-contact100">
 
-            <form method="POST" action="{{ route('addProduct') }}" class="contact100-form validate-form">
+            <form method="POST" action="{{route('addDistributor')}}" class="contact100-form validate-form">
                 @csrf
                 <span class="contact100-form-title">
-                    إضافة منتج
+                    إضافة موزع
                 </span>
 
+
                 <div class="wrap-input100 validate-input" data-validate="name is required">
-                    <span class="label-input100">الموزع</span>
-                    <select class="form-control" required name="distributor_id" id="distributor_id">
-                        @foreach ($dis as $item)
-                            <option value="{{ $item->id }}">{{ $item->name }}</option>
-                        @endforeach
+                    <span class="label-input100">الأسم</span>
+                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
+                        name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
-                    </select>
-
-
-
-                    <span class="focus-input100"></span>
-                </div>
-                <div class="wrap-input100 validate-input" data-validate="name is required">
-                    <span class="label-input100">أسم المنتج</span>
-
-                    <input list="item_names" id="item_name"
-                        class="form-control @error('item_name') is-invalid @enderror" name="item_name"
-                        value="{{ old('item_name') }}" autofocus>
-
-                    <datalist id="item_names">
-                        @foreach ($all as $item)
-                            <option value="{{ $item->name }}">
-                        @endforeach
-                    </datalist>
-
-                    @error('item_name')
+                    @error('name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -74,12 +57,12 @@
                     <span class="focus-input100"></span>
                 </div>
 
-                <div class="wrap-input100 validate-input" data-validate="buy_price is required">
-                    <span class="label-input100">سعر الشراء</span>
-                    <input id="buy_price" type="number" class="form-control @error('buy_price') is-invalid @enderror"
-                        name="buy_price" value="{{ old('buy_price') }}" required autocomplete="buy_price" autofocus>
+                <div class="wrap-input100 validate-input" data-validate="phone is required">
+                    <span class="label-input100">الموبايل</span>
+                    <input id="phone" type="number" class="form-control @error('phone') is-invalid @enderror"
+                        name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
 
-                    @error('buy_price')
+                    @error('phone')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -87,47 +70,9 @@
                     <span class="focus-input100"></span>
                 </div>
 
-                <div class="wrap-input100 validate-input" data-validate="sell_price is required">
-                    <span class="label-input100">سعر المبيع</span>
-                    <input id="sell_price" type="number" class="form-control @error('sell_price') is-invalid @enderror"
-                        name="sell_price" value="{{ old('sell_price') }}" required autocomplete="sell_price" autofocus>
+                
 
-                    @error('sell_price')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                    <span class="focus-input100"></span>
-                </div>
-
-                <div class="wrap-input100 validate-input" data-validate="count is required">
-                    <span class="label-input100">الكمية</span>
-                    <input id="count" type="number" class="form-control @error('count') is-invalid @enderror"
-                        name="count" value="{{ old('count') }}" required autocomplete="count" autofocus>
-
-                    @error('count')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                    <span class="focus-input100"></span>
-                </div>
-
-                <div class="wrap-input100 validate-input">
-                    <span class="label-input100">الوصف</span>
-                    <input id="description" type="text"
-                        class="form-control @error('description') is-invalid @enderror" name="description"
-                        value="{{ old('description') }}" required autocomplete="description" autofocus>
-
-                    @error('description')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                    <span class="focus-input100"></span>
-                </div>
-
-
+               
 
 
 
@@ -136,7 +81,7 @@
                         <div class="contact100-form-bgbtn"></div>
                         <button type="submit" class="contact100-form-btn">
                             <span>
-                                إضافة
+                                  إضافة
                                 <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
                             </span>
                         </button>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Distributor;
 use App\Models\Storage;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,8 @@ class StorageController extends Controller
     public function add()
     {
         $all = Storage::all();
-        return view('storage.add', compact('all'));
+        $dis = Distributor::all();
+        return view('storage.add', compact('all','dis'));
     }
     public function store(Request $request)
     {

@@ -25,15 +25,22 @@ class CartController extends Controller
 
     public function indexCart()
     {
-
+        $dis = Client::all();
 
         $cart = Cart::where('is_active', true)->first();
-
-
-
+        
         //must compact $cart and $cart->items;
-        return view('cart.cart', compact('cart'));
+        return view('cart.cart', compact('cart', 'dis'));
     }
+
+
+    public function getCart()
+    {
+        $carts = Cart::where('is_active', false)->get(); 
+        //must compact $cart and $cart->items;
+        return view('cart.index', compact('carts'));
+    }
+
 
 
 
@@ -53,7 +60,7 @@ class CartController extends Controller
             'cart_id' => $request->cart_id,
             'count' => $request->count,
             'item_id' => $request->item_id,
-            'price' => $item->sell_price
+            'price' => $item->sell_price * $request->count
         ]);
         return redirect()->back()->with('message', 'تمت الاضافة للسلة');
     }
@@ -61,7 +68,9 @@ class CartController extends Controller
     public function editCount(Request $request)
     {
         $item = CartItem::findOrFail($request->id);
+        $price = $item->price / $item->count;
         $item->count = $request->count;
+        $item->price = $item->count * $price;
         $item->save();
         return redirect()->back()->with('message', 'update successfully');
     }
@@ -85,6 +94,7 @@ class CartController extends Controller
     {
         $cart = Cart::findOrFail($request->id);
         $cart->is_active = false;
+        $cart->name = $request->name;
         $cart->client_id = $request->client_id;
         $cart->save();
         $gain = 0;
@@ -103,7 +113,7 @@ class CartController extends Controller
             'amount' => $box->amount + $gain
         ]);
         if ($request->client_id) {
-            $client  = Client::find($request->client_id);
+            $client = Client::find($request->client_id);
             $client->buy_count = $client->buy_count + 1;
             $client->save();
         }

@@ -9,4 +9,6 @@ class Sales extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    
 }

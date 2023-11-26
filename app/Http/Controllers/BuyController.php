@@ -12,7 +12,7 @@ class BuyController extends Controller
     public function index()
     {
         $all = Buy::all();
-        return view();
+        return view('buy.index',compact('all'));
     }
     public function store(Request $request)
     {

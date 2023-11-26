@@ -10,7 +10,14 @@ class DistributorController extends Controller
     public function index()
     {
         $all = Distributor::all();
-        return view();
+        return view('distributor.index',compact('all'));
+    }
+
+
+    public function getStore(Request $request)
+    {
+        
+        return view('distributor.add');
     }
 
     public function store(Request $request)
@@ -23,13 +30,13 @@ class DistributorController extends Controller
             'name'=> $request->name,
             'phone'=> $request->phone,
         ]);
-        return redirect()->back()->with('message','تم الحفظ بنجاح');
+        return redirect()->route('home')->with('message','تم الحفظ بنجاح');
     }
 
-    public function edit(Request $request)
+    public function edit($id)
     {
-        $distributor = Distributor::findOrFail($request->id);
-        return view();
+        $distributor = Distributor::findOrFail($id);
+        return view('distributor.edit',compact('distributor'));
     }
 
     public function update(Request $request)
@@ -39,6 +46,6 @@ class DistributorController extends Controller
             'name' => $request->name,
             'phone'=> $request->phone,
         ]);
-        return redirect()->back()->with('message','تم التعديل بنجاح');
+        return redirect()->route('home')->with('message','تم التعديل بنجاح');
     }
 }

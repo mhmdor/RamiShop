@@ -52,14 +52,14 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                
+
                 <a href="{{ route('logout') }}" class="nav-item nav-link">تسجيل خروج</a>
             </div>
             {{-- <a  class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">10000  <i class="fa fa-book me-3"></i></a> --}}
         </div>
     </nav>
     <!-- Navbar End -->
-  
+
 
 
 
@@ -80,7 +80,7 @@
             <div class="row g-4">
 
                 <div class="col-lg-4 col-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <a href="{{route('storage')}}">
+                    <a href="{{ route('storage') }}">
                         <div class="service-item text-center pt-3">
 
                             <div class="p-4">
@@ -93,7 +93,7 @@
                 </div>
 
                 <div class="col-lg-4 col-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <a href="{{route('indexItem')}}">
+                    <a href="{{ route('indexItem') }}">
                         <div class="service-item text-center pt-3">
 
                             <div class="p-4">
@@ -105,20 +105,9 @@
                     </a>
                 </div>
 
-                <div class="col-lg-4 col-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <a  href="{{route('showAddProduct')}}">
-                        <div class="service-item text-center pt-3">
 
-                            <div class="p-4">
-                                <i class="fa fa-3x fa-upload text-primary mb-4"></i>
-                                <h5 class="mb-3">اضافة مشتريات</h5>
-
-                            </div>
-                        </div>
-                    </a>
-                </div>
                 <div class="col-lg-4 col-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <a href="{{route('indexStorage')}}">
+                    <a href="{{ route('indexStorage') }}">
                         <div class="service-item text-center pt-3">
 
                             <div class="p-4">
@@ -130,7 +119,7 @@
                     </a>
                 </div>
                 <div class="col-lg-4 col-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <a>
+                    <a href="{{ route('getCarts') }}">
                         <div class="service-item text-center pt-3">
 
                             <div class="p-4">
@@ -141,13 +130,12 @@
                         </div>
                     </a>
                 </div>
-
                 <div class="col-lg-4 col-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <a href="{{route('indexNotRemove')}}">
+                    <a href="{{ route('indexNotRemove') }}">
                         <div class="service-item text-center pt-3">
 
                             <div class="p-4">
-                                <i class="fa fa-3x  fa-credit-card text-primary mb-4"></i>
+                                <i class="fa fa-3x  fa-eraser text-primary mb-4"></i>
                                 <h5 class="mb-3">المرتجعات</h5>
 
                             </div>
@@ -155,23 +143,152 @@
                     </a>
                 </div>
 
-                <div class="col-lg-4 col-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <a href="{{route('indexRemove')}}">
-                        <div class="service-item text-center pt-3">
+                @if (Auth::user()->is_admin)
+                    <div class="col-lg-4 col-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <a href="{{ route('box') }}">
+                            <div class="service-item text-center pt-3">
 
-                            <div class="p-4">
-                                <i class="fa fa-3x  fa-credit-card text-primary mb-4"></i>
-                                <h5 class="mb-3">التوالف</h5>
+                                <div class="p-4">
+                                    <i class="fa fa-3x fa-calculator text-primary mb-4"></i>
+                                    <h5 class="mb-3">الصندوق</h5>
 
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
+                        </a>
+                    </div>
 
 
-               
+                    <div class="col-lg-4 col-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <a href="{{ route('distributor') }}">
+                            <div class="service-item text-center pt-3">
 
-               
+                                <div class="p-4">
+                                    <i class="fa fa-3x fa-user text-primary mb-4"></i>
+                                    <h5 class="mb-3">الموزعين</h5>
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-lg-4 col-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <a href="{{ route('Client') }}">
+                            <div class="service-item text-center pt-3">
+
+                                <div class="p-4">
+                                    <i class="fa fa-3x fa-male text-primary mb-4"></i>
+                                    <h5 class="mb-3">العملاء</h5>
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-4 col-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <a href="{{ route('getBuy') }}">
+                            <div class="service-item text-center pt-3">
+
+                                <div class="p-4">
+                                    <i class="fa fa-3x  fa-truck text-primary mb-4"></i>
+                                    <h5 class="mb-3">المشتريات</h5>
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-lg-4 col-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <a href="{{ route('showAddProduct') }}">
+                            <div class="service-item text-center pt-3">
+
+                                <div class="p-4">
+                                    <i class="fa fa-3x fa-upload text-primary mb-4"></i>
+                                    <h5 class="mb-3">اضافة مشتريات</h5>
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-lg-4 col-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <a href="{{ route('indexRemove') }}">
+                            <div class="service-item text-center pt-3">
+
+                                <div class="p-4">
+                                    <i class="fa fa-3x  fa-ban text-primary mb-4"></i>
+                                    <h5 class="mb-3">التوالف</h5>
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+
+
+
+                    <div class="col-lg-4 col-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <a href="{{ route('getUser') }}">
+                            <div class="service-item text-center pt-3">
+
+                                <div class="p-4">
+                                    <i class="fa fa-3x fa-user text-primary mb-4"></i>
+                                    <h5 class="mb-3">الموظفين</h5>
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+
+
+
+                    <div class="col-lg-4 col-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <a href="{{ route('debtClient') }}">
+                            <div class="service-item text-center pt-3">
+
+                                <div class="p-4">
+                                    <i class="fa fa-3x fa-male text-primary mb-4"></i>
+                                    <h5 class="mb-3">ديون العملاء</h5>
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="col-lg-4 col-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <a href="{{ route('debtDistributor') }}">
+                            <div class="service-item text-center pt-3">
+
+                                <div class="p-4">
+                                    <i class="fa fa-3x fa-user text-primary mb-4"></i>
+                                    <h5 class="mb-3">ديون الموزعين</h5>
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="col-lg-4 col-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <a href="{{ route('statics') }}">
+                            <div class="service-item text-center pt-3">
+
+                                <div class="p-4">
+                                    <i class="fa fa-3x fa-star text-primary mb-4"></i>
+                                    <h5 class="mb-3">الأحصائيات</h5>
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                @endif
+
+
+
+
+
+
+
 
 
 

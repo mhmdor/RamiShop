@@ -13,7 +13,7 @@ class BoxController extends Controller
         if (!$box) {
             $box = Box::create([]);
         }
-        return view();
+        return view('box',compact('box'));
     }
 
     public function updateBox(Request $request)

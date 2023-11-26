@@ -11,7 +11,13 @@ class UserController extends Controller
     public function index()
     {
         $all = User::all();
-        return view();
+        return view('users.index',compact('all'));
+    }
+
+    public function getStore()
+    {
+       
+        return view('users.add');
     }
 
     public function store(Request $request)
@@ -28,7 +34,7 @@ class UserController extends Controller
             'password'=>Hash::make($request->password),
         ]);
 
-        return redirect()->back()->with('message', 'تمت الاضافة بنجاح');
+        return redirect()->route('home')->with('message', 'تمت الاضافة بنجاح');
 
     }
 }

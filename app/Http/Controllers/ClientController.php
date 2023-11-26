@@ -10,7 +10,14 @@ class ClientController extends Controller
     public function index()
     {
         $all = Client::all();
-        return view();
+        return view('Client.index',compact('all'));
+    }
+
+
+    public function getStore(Request $request)
+    {
+        
+        return view('Client.add');
     }
 
     public function store(Request $request)
@@ -23,23 +30,23 @@ class ClientController extends Controller
             'name'=> $request->name,
             'phone'=> $request->phone,
         ]);
-        return redirect()->back()->with('message','تم الحفظ بنجاح');
+        return redirect()->route('home')->with('message','تم الحفظ بنجاح');
     }
 
-    public function edit(Request $request)
+    public function edit($id)
     {
-        $client = Client::findOrFail($request->id);
-        return view();
+        $Client = Client::findOrFail($id);
+        return view('Client.edit',compact('Client'));
     }
 
     public function update(Request $request)
     {
-        $client = Client::findOrFail($request->id);
-        $client->update([
+        $Client = Client::findOrFail($request->id);
+        $Client->update([
             'name' => $request->name,
             'phone'=> $request->phone,
         ]);
-        return redirect()->back()->with('message','تم التعديل بنجاح');
+        return redirect()->route('home')->with('message','تم التعديل بنجاح');
     }
 
     

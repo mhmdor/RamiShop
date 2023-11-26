@@ -17,8 +17,8 @@ class StatsController extends Controller
         $carts = Cart::all();
         foreach ($carts as $cart) {
             foreach ($cart->items as $item) {
-                $gain = $gain + $item->price;
-                $gain2 = $gain2 + $item->price - $item->item->buy_price;
+                $gain = $gain + ($item->price / $item->count);
+                $gain2 = $gain2 + ($item->price / $item->count) - $item->item->buy_price;
             }
         }
 
@@ -42,5 +42,7 @@ class StatsController extends Controller
         $number_of_sell = Buy::count();
         $number_of_buy = Cart::count();
         $number_of_returned = SaleReturn::count();
+
+        return view('statics',compact('max_product','min_product','near_finish','number_of_sell','number_of_buy','number_of_returned','gain','gain2','loss'));
     }
 }
