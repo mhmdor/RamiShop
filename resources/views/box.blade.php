@@ -55,6 +55,15 @@
                     class="fa fa-arrow-right ms-3"></i></a>
         </div>
 
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+
+            <a href="{{ route('getUser') }}" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">
+                <h4>الموظفين</h4>
+            </a>
+        </div>
+
+       
+
     </nav>
     <!-- Navbar End -->
 
@@ -121,6 +130,20 @@
                                     required autocomplete="new-amount">
 
                                 @error('amount')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                <span class="focus-input100"></span>
+                            </div>
+
+                            <div class="wrap-input100 validate-input" data-validate="name is required">
+                                <span class="label-input100">السبب</span>
+                                <input id="name" type="text"
+                                    class="input100 form-control @error('name') is-invalid @enderror" name="name"
+                                    required autocomplete="new-name">
+
+                                @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

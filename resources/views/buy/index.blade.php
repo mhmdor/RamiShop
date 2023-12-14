@@ -54,12 +54,24 @@
             <a href="{{ route('home') }}" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">الرئيسية<i
                     class="fa fa-arrow-right ms-3"></i></a>
         </div>
-        {{-- <div class="collapse navbar-collapse" id="navbarCollapse">
+        {{-- <div class="col-lg-4 col-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <a href="{{ route('showAddProduct') }}">
+                            <div class="service-item text-center pt-3">
 
-            <a href="{{ route('getAddClient') }}" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">
-                <h4>إضافة العميل</h4>
+                                <div class="p-4">
+                                    <i class="fa fa-3x fa-upload text-primary mb-4"></i>
+                                    <h5 class="mb-3">اضافة مشتريات</h5>
+
+                                </div>
+                            </div>
+                        </a>
+                    </div> --}}
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+
+            <a href="{{ route('showAddProduct') }}" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">
+                <h4>إضافة مشتريات</h4>
             </a>
-        </div> --}}
+        </div>
     </nav>
     <!-- Navbar End -->
 

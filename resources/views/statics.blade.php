@@ -58,13 +58,15 @@
 
 
 
+    
+
+
+
+
     <!-- Team Start -->
     <div class="container-xxl py-5">
         <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                
-                <h1 class="mb-5"> اكثر المنتجات شراء </h1>
-            </div>
+           
             @if (\Session::has('message'))
                 <div id="myElem" class="alert alert-success text-center">
                     <ul>
@@ -74,136 +76,12 @@
             @endif
             <div class="row g-4">
 
-                @foreach ($max_product as $item)
-                    <div class="col-lg-3 col-md-3 wow fadeInUp" data-wow-delay="0.1s">
-                        @php $prodID= Crypt::encrypt($item->id); @endphp
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
 
-                        <a>
-                            <div class="team-item bg-light">
+                    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
 
-
-                                <div class="text-center p-4">
-                                    <h5 class="mb-0"> {{ $item->name }} </h5>
-                                    <br>
-                                    <h4>{{ $item->count }}</h4>
-
-                                </div>
-                            </div>
-                        </a>
+                        <h1 class="mb-5"> مجموع المبيعات </h1>
                     </div>
-                @endforeach
-
-            </div>
-        </div>
-    </div>
-
-
-    <!-- Team Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                
-                <h1 class="mb-5">اقل المنتجات شراء</h1>
-            </div>
-            @if (\Session::has('message'))
-                <div id="myElem" class="alert alert-success text-center">
-                    <ul>
-                        <li>{!! \Session::get('message') !!}</li>
-                    </ul>
-                </div>
-            @endif
-            <div class="row g-4">
-
-                @foreach ($min_product as $item)
-                    <div class="col-lg-3 col-md-3 wow fadeInUp" data-wow-delay="0.1s">
-                        @php $prodID= Crypt::encrypt($item->id); @endphp
-
-                        <a>
-                            <div class="team-item bg-light">
-
-
-                                <div class="text-center p-4">
-                                    <h5 class="mb-0"> {{ $item->name }} </h5>
-                                    <br>
-                                    <h4>{{ $item->count }}</h4>
-
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                @endforeach
-
-            </div>
-        </div>
-    </div>
-
-
-    <!-- Team Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                
-                <h1 class="mb-5"> قريب الانتهاء </h1>
-            </div>
-            @if (\Session::has('message'))
-                <div id="myElem" class="alert alert-success text-center">
-                    <ul>
-                        <li>{!! \Session::get('message') !!}</li>
-                    </ul>
-                </div>
-            @endif
-            <div class="row g-4">
-
-                @foreach ($near_finish as $item)
-                    <div class="col-lg-3 col-md-3 wow fadeInUp" data-wow-delay="0.1s">
-                        @php $prodID= Crypt::encrypt($item->id); @endphp
-
-                        <a>
-                            <div class="team-item bg-light">
-
-
-                                <div class="text-center p-4">
-                                    <h5 class="mb-0"> {{ $item->name }} </h5>
-                                    <br>
-                                    <h4>{{ $item->count }}</h4>
-
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                @endforeach
-
-            </div>
-        </div>
-    </div>
-
-
-
-
-
-
-
-    <!-- Team Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                
-                <h1 class="mb-5">  مجموع المبيعات </h1>
-            </div>
-            @if (\Session::has('message'))
-                <div id="myElem" class="alert alert-success text-center">
-                    <ul>
-                        <li>{!! \Session::get('message') !!}</li>
-                    </ul>
-                </div>
-            @endif
-            <div class="row g-4">
-
-
-
-
-                <div class="col-lg-12 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    @php $prodID= Crypt::encrypt($item->id); @endphp
 
                     <a>
                         <div class="team-item bg-light">
@@ -220,33 +98,12 @@
                 </div>
 
 
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
 
-            </div>
-        </div>
-    </div>
-    <!-- Team End -->
+                    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
 
-    <!-- Team Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                
-                <h1 class="mb-5">  مجموع المشتريات </h1>
-            </div>
-            @if (\Session::has('message'))
-                <div id="myElem" class="alert alert-success text-center">
-                    <ul>
-                        <li>{!! \Session::get('message') !!}</li>
-                    </ul>
-                </div>
-            @endif
-            <div class="row g-4">
-
-
-
-
-                <div class="col-lg-12 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    @php $prodID= Crypt::encrypt($item->id); @endphp
+                        <h1 class="mb-5"> مجموع المشتريات </h1>
+                    </div>
 
                     <a>
                         <div class="team-item bg-light">
@@ -262,34 +119,12 @@
                     </a>
                 </div>
 
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
 
+                    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
 
-            </div>
-        </div>
-    </div>
-    <!-- Team End -->
-
-    <!-- Team Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                
-                <h1 class="mb-5"> مجموع المرتجعات </h1>
-            </div>
-            @if (\Session::has('message'))
-                <div id="myElem" class="alert alert-success text-center">
-                    <ul>
-                        <li>{!! \Session::get('message') !!}</li>
-                    </ul>
-                </div>
-            @endif
-            <div class="row g-4">
-
-
-
-
-                <div class="col-lg-12 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    @php $prodID= Crypt::encrypt($item->id); @endphp
+                        <h1 class="mb-5"> مجموع المرتجعات </h1>
+                    </div>
 
                     <a>
                         <div class="team-item bg-light">
@@ -305,36 +140,12 @@
                     </a>
                 </div>
 
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
 
+                    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
 
-            </div>
-        </div>
-    </div>
-    <!-- Team End -->
-
-
-
-    <!-- Team Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                
-                <h1 class="mb-5">  اجمالي الربح </h1>
-            </div>
-            @if (\Session::has('message'))
-                <div id="myElem" class="alert alert-success text-center">
-                    <ul>
-                        <li>{!! \Session::get('message') !!}</li>
-                    </ul>
-                </div>
-            @endif
-            <div class="row g-4">
-
-
-
-
-                <div class="col-lg-12 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    @php $prodID= Crypt::encrypt($item->id); @endphp
+                        <h1 class="mb-5"> اجمالي الربح </h1>
+                    </div>
 
                     <a>
                         <div class="team-item bg-light">
@@ -350,37 +161,33 @@
                     </a>
                 </div>
 
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+
+                        <h1 class="mb-5"> الخسائر </h1>
+                    </div>
+
+                    <a>
+                        <div class="team-item bg-light">
 
 
-            </div>
-        </div>
-    </div>
-    <!-- Team End -->
+                            <div class="text-center p-4">
+                                <h2 class="mb-0"> {{ $loss }} </h2>
+                                <br>
+                                <h4></h4>
 
-
-
-
-    <!-- Team Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                
-                <h1 class="mb-5">  الربح الصافي </h1>
-            </div>
-            @if (\Session::has('message'))
-                <div id="myElem" class="alert alert-success text-center">
-                    <ul>
-                        <li>{!! \Session::get('message') !!}</li>
-                    </ul>
+                            </div>
+                        </div>
+                    </a>
                 </div>
-            @endif
-            <div class="row g-4">
 
 
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
 
+                    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
 
-                <div class="col-lg-12 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    @php $prodID= Crypt::encrypt($item->id); @endphp
+                        <h1 class="mb-5"> الربح الصافي </h1>
+                    </div>
 
                     <a>
                         <div class="team-item bg-light">
@@ -407,10 +214,7 @@
     <!-- Team Start -->
     <div class="container-xxl py-5">
         <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                
-                <h1 class="mb-5">  الخسائر </h1>
-            </div>
+            
             @if (\Session::has('message'))
                 <div id="myElem" class="alert alert-success text-center">
                     <ul>
@@ -421,24 +225,9 @@
             <div class="row g-4">
 
 
+               
 
-
-                <div class="col-lg-12 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    @php $prodID= Crypt::encrypt($item->id); @endphp
-
-                    <a>
-                        <div class="team-item bg-light">
-
-
-                            <div class="text-center p-4">
-                                <h2 class="mb-0"> {{ $loss }} </h2>
-                                <br>
-                                <h4></h4>
-
-                            </div>
-                        </div>
-                    </a>
-                </div>
+               
 
 
 
@@ -446,6 +235,129 @@
         </div>
     </div>
     <!-- Team End -->
+    <!-- Team Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+
+                <h1 class="mb-5"> اكثر المنتجات شراء </h1>
+            </div>
+            @if (\Session::has('message'))
+                <div id="myElem" class="alert alert-success text-center">
+                    <ul>
+                        <li>{!! \Session::get('message') !!}</li>
+                    </ul>
+                </div>
+            @endif
+            <div class="row g-4">
+
+                @foreach ($max_product as $item)
+                    <div class="col-lg-3 col-md-3 wow fadeInUp" data-wow-delay="0.1s">
+    
+                        <a>
+                            <div class="team-item bg-light">
+
+
+                                <div class="text-center p-4">
+                                    <h5 class="mb-0"> {{ $item->name }} </h5>
+                                    <br>
+                                    <h4>{{ $item->count }}</h4>
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Team Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+
+                <h1 class="mb-5">اقل المنتجات شراء</h1>
+            </div>
+            @if (\Session::has('message'))
+                <div id="myElem" class="alert alert-success text-center">
+                    <ul>
+                        <li>{!! \Session::get('message') !!}</li>
+                    </ul>
+                </div>
+            @endif
+            <div class="row g-4">
+
+                @foreach ($min_product as $item)
+                    <div class="col-lg-3 col-md-3 wow fadeInUp" data-wow-delay="0.1s">
+    
+                        <a>
+                            <div class="team-item bg-light">
+
+
+                                <div class="text-center p-4">
+                                    <h5 class="mb-0"> {{ $item->name }} </h5>
+                                    <br>
+                                    <h4>{{ $item->count }}</h4>
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Team Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+
+                <h1 class="mb-5"> قريب الانتهاء </h1>
+            </div>
+            @if (\Session::has('message'))
+                <div id="myElem" class="alert alert-success text-center">
+                    <ul>
+                        <li>{!! \Session::get('message') !!}</li>
+                    </ul>
+                </div>
+            @endif
+            <div class="row g-4">
+
+                @foreach ($near_finish as $item)
+                    <div class="col-lg-3 col-md-3 wow fadeInUp" data-wow-delay="0.1s">
+    
+                        <a>
+                            <div class="team-item bg-light">
+
+
+                                <div class="text-center p-4">
+                                    <h5 class="mb-0"> {{ $item->name }} </h5>
+                                    <br>
+                                    <h4>{{ $item->count }}</h4>
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
 
 
     <!-- Footer Start -->

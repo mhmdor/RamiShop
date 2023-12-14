@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Box;
+use App\Models\Cart;
 use Illuminate\Http\Request;
 
 class BoxController extends Controller
@@ -24,6 +25,12 @@ class BoxController extends Controller
         ]);
         $box = Box::first();
         if ($request->is_add == 1) {
+            $cart = Cart::create([
+                'is_active' => false, 
+                'name'=> $request->name,
+                'price'=> $request->amount,
+            ]);
+            
             $box->update([
                 'amount' => $box->amount + $request->amount,
             ]);

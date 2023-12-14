@@ -60,6 +60,15 @@
                 <h4>إضافة العميل</h4>
             </a>
         </div>
+
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+
+            <a href="{{ route('debtClient') }}" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">
+                <h4>ديون العملاء</h4>
+            </a>
+        </div>
+
+        
     </nav>
     <!-- Navbar End -->
 
@@ -120,9 +129,6 @@
 
 
                             </a>
-
-
-
 
                         </td>
 

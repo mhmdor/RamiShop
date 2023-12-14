@@ -107,84 +107,98 @@
                         @else
                             <td>---</td>
                         @endif
-                        <td>
-                            {{ $item->items->sum('price') }}
-                        </td>
-
+                        @if ($item->price)
+                            <td>
+                                {{ $item->price }}
+                            </td>
+                        @else
+                            <td>
+                                {{ $item->items->sum('price') }}
+                            </td>
+                        @endif
                         @if ($item->client)
                             <td>{{ $item->client->name }}</td>
                         @else
                             <td>---</td>
                         @endif
 
-                        <td>
-                            {{-- <button type="button">
+
+                        {{-- <button type="button">
                         <a href="{{route('editProduct/'.$item->id)}}">تعديل</a>
                     </button> --}}
 
 
 
+                        @if (!$item->price)
+                            <td>
+                                <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                    data-bs-target="#staticBackdrop{{ $item->id }}n">
+                                    المنتجات
+                                </button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="staticBackdrop{{ $item->id }}n"
+                                    data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="staticBackdropLabel"></h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
 
 
-                            <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                data-bs-target="#staticBackdrop{{ $item->id }}n">
-                                المنتجات
-                            </button>
-
-                            <!-- Modal -->
-                            <div class="modal fade" id="staticBackdrop{{ $item->id }}n" data-bs-backdrop="static"
-                                data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-                                aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="staticBackdropLabel"></h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-
-
-                                        <table class="table table-bordered" id="example" width="100%"
-                                            cellspacing="0">
-                                            <thead>
-                                                <tr>
-                                                    <th>رقم</th>
-                                                    <th>أسم المنتج </th>
-                                                    <th>الكمية </th>
-                                                    <th>المجموع</th>
-                                                   
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($item->items as $item1)
+                                            <table class="table table-bordered" id="example" width="100%"
+                                                cellspacing="0">
+                                                <thead>
                                                     <tr>
-                                                        <td>{{ $item1->id }}</td>
-                                                       <td>{{$item1->item->name}}</td>
-
-
-                                                        
-                                                            <td>{{ $item1->count }}</td>
-                                                      
-                                                        @if ($item1->price)
-                                                        <td>{{ $item1->price }}</td>
-                                                    @else
-                                                        <td>---</td>
-                                                    @endif
-
+                                                        <th>رقم</th>
+                                                        <th>أسم المنتج </th>
+                                                        <th>الكمية </th>
+                                                        <th>المجموع</th>
 
                                                     </tr>
-                                                @endforeach
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($item->items as $item1)
+                                                        <tr>
+                                                            <td>{{ $item1->id }}</td>
+                                                            <td>{{ $item1->item->name }}</td>
 
 
-                                            </tbody>
 
-                                        </table>
+                                                            <td>{{ $item1->count }}</td>
 
+                                                            @if ($item1->price)
+                                                                <td>{{ $item1->price }}</td>
+                                                            @else
+                                                                <td>---</td>
+                                                            @endif
+
+
+                                                        </tr>
+                                                    @endforeach
+
+
+                                                </tbody>
+
+                                            </table>
+
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </td>
+                        @else
+                            <td>
+                                من الصندوق
+                            </td>
+                        @endif
 
-                        </td>
+
+
+
+
+
 
 
                     </tr>

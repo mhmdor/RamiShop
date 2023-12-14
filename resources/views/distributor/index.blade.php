@@ -60,6 +60,13 @@
                 <h4>إضافة موزع</h4>
             </a>
         </div>
+
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+
+            <a href="{{ route('debtDistributor') }}" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">
+                <h4>ديون الموزعين</h4>
+            </a>
+        </div>    
     </nav>
     <!-- Navbar End -->
 

@@ -76,9 +76,20 @@
 
             <button type="button" class="btn btn-success py-4 px-lg-5 d-none d-lg-block" data-bs-toggle="modal"
                 data-bs-target="#staticBackdrop1{{ $cart->id }}n">
-                تأكيد الطلب
+              تأكيد الطلب لزبون قديم
             </button>
         </div>
+
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+
+            <button type="button" class="btn btn-success py-4 px-lg-5 d-none d-lg-block" data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop2{{ $cart->id }}n">
+                تأكيد الطلب لزبون جديد
+            </button>
+        </div>
+
+
+
 
         <!-- Modal -->
 
@@ -138,7 +149,7 @@
                         <td>{{ $item->item->id }}</td>
                         <td>{{ $item->item->name }}</td>
                         <td>{{ $item->count }}</td>
-                        <td>{{ $item->price  }} </td>
+                        <td>{{ $item->price }} </td>
                         <td>
 
 
@@ -224,8 +235,7 @@
                                                 <div class="wrap-input100 validate-input"
                                                     data-validate="name is required">
                                                     <span class="label-input100">العميل</span>
-                                                    <select class="form-control"  name="client_id"
-                                                        id="client_id">
+                                                    <select class="form-control" name="client_id" id="client_id">
                                                         <option value=""></option>
                                                         @foreach ($dis as $item)
                                                             <option value="{{ $item->id }}">{{ $item->name }}
@@ -236,6 +246,83 @@
 
 
 
+                                                    <span class="focus-input100"></span>
+                                                </div>
+                                                <div class="wrap-input100 validate-input"
+                                                    data-validate="count is required">
+                                                    <span class="label-input100">أسم السلة</span>
+                                                    <input id="name" type="text"
+                                                        class="input100 form-control @error('name') is-invalid @enderror"
+                                                        name="name" required autocomplete="new-name">
+
+                                                    @error('name')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                    <span class="focus-input100"></span>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">اغلاق</button>
+                                                <button type="submit" class="btn btn-danger"> تأكيد </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal fade" id="staticBackdrop2{{ $cart->id }}n"
+                                data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                aria-labelledby="staticBackdrop1Label" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="staticBackdrop1Label"></h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+
+                                        <form method="POST" action="{{ route('confirmCart1') }}">
+                                            @csrf
+
+
+                                            <input type="text" name="id" value="{{ $cart->id }}" hidden>
+
+
+
+                                            <div class="modal-body">
+
+                                                <div class="wrap-input100 validate-input"
+                                                    data-validate="client is required">
+                                                    <span class="label-input100">الأسم</span>
+                                                    <input id="client" type="text"
+                                                        class="form-control @error('client') is-invalid @enderror"
+                                                        name="client" value="{{ old('client') }}" required
+                                                        autocomplete="client" autofocus>
+
+                                                    @error('client')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                    <span class="focus-input100"></span>
+                                                </div>
+
+                                                <div class="wrap-input100 validate-input"
+                                                    data-validate="phone is required">
+                                                    <span class="label-input100">الموبايل</span>
+                                                    <input id="phone" type="number"
+                                                        class="form-control @error('phone') is-invalid @enderror"
+                                                        name="phone" value="{{ old('phone') }}" required
+                                                        autocomplete="phone" autofocus>
+
+                                                    @error('phone')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                     <span class="focus-input100"></span>
                                                 </div>
                                                 <div class="wrap-input100 validate-input"

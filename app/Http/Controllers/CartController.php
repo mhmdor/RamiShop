@@ -119,4 +119,40 @@ class CartController extends Controller
         }
         return redirect()->route('home')->with('message', 'تمت العملية بنجاح');
     }
+
+    public function confirmCart1(Request $request)
+    {
+
+        
+        $cart = Cart::findOrFail($request->id);
+        $cart->is_active = false;
+        $cart->name = $request->name;
+        $client = Client::create([
+            'name' => $request->client,
+            'phone' => $request->phone,
+        ]);
+        $cart->client_id = $client->id;
+        $cart->save();
+        $gain = 0;
+        foreach ($cart->items as $item) {
+            $storage = Storage::find($item->item_id);
+            $storage->count = $storage->count - $item->count;
+            $storage->number_buy = $storage->number_buy + 1;
+            $storage->save();
+            $gain = $gain + $item->price * $item->count;
+        }
+        $box = Box::first();
+        if (!$box) {
+            $box = Box::create([]);
+        }
+        $box->update([
+            'amount' => $box->amount + $gain
+        ]);
+        if ($client->id) {
+            $client = Client::find($client->id);
+            $client->buy_count = $client->buy_count + 1;
+            $client->save();
+        }
+        return redirect()->route('home')->with('message', 'تمت العملية بنجاح');
+    }
 }

@@ -73,6 +73,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/deleteCart', [CartController::class, 'deleteCart'])->name('deleteCart');
     
     Route::post('/confirmCart', [CartController::class, 'confirmCart'])->name('confirmCart');
+
+    Route::post('/confirmCart1', [CartController::class, 'confirmCart1'])->name('confirmCart1');
+
     
     Route::get('/indexStorage', [SaleReturnController::class, 'indexStorage'])->name('indexStorage');
     

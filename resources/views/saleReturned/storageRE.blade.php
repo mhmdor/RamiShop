@@ -55,6 +55,20 @@
                     class="fa fa-arrow-right ms-3"></i></a>
         </div>
 
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+
+            <a href="{{ route('indexStorage') }}" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">
+                <h4>إضافة مرتجع</h4>
+            </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+
+            <a href="{{ route('indexRemove') }}" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">
+                <h4>التوالف</h4>
+            </a>
+        </div>
+
     </nav>
     <!-- Navbar End -->
 
@@ -69,6 +83,10 @@
                 </div>
             </div>
         </div>
+
+       
+        
+        
     </div>
     <!-- Header End -->
     @if (\Session::has('message'))
@@ -99,7 +117,7 @@
                         <td>{{ $item->item->name }}</td>
                         <td>{{ $item->item->sell_price }}</td>
 
-                     <td>{{$item->reason}}</td>
+                        <td>{{ $item->reason }}</td>
 
 
                     </tr>
