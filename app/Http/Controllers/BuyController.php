@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Box;
 use App\Models\Buy;
+use App\Models\DistributorDebt;
 use App\Models\Storage;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,7 @@ class BuyController extends Controller
     public function index()
     {
         $all = Buy::all();
-        return view('buy.index',compact('all'));
+        return view('buy.index', compact('all'));
     }
     public function store(Request $request)
     {
@@ -29,6 +30,7 @@ class BuyController extends Controller
             'buy_price' => $request->buy_price,
             'sell_price' => $request->sell_price,
             'count' => $request->count,
+            'description'=> $request->description,
         ]);
 
         $box = Box::first();
@@ -56,6 +58,22 @@ class BuyController extends Controller
                 'distributor_id' => $request->distributor_id,
             ]);
         }
+
+        if ($request->amount) {
+
+            $debt = DistributorDebt::where('distributor_id', $request->distributor_id)->first();
+            if ($debt) {
+                $debt->update([
+                    'remain' => $debt->remain + $request->amount,
+                ]);
+            } else {
+                $debt = DistributorDebt::create([
+                    'distributor_id' => $request->distributor_id,
+                    'remain' => $request->amount,
+                ]);
+            }
+        }
+
         return redirect()->route('home')->with('message', 'تمت العملية بنجاح');
     }
 }

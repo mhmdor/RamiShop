@@ -127,7 +127,18 @@
                     <span class="focus-input100"></span>
                 </div>
 
+                <div class="wrap-input100 validate-input" data-validate="amount is ">
+                    <span class="label-input100">مبلغ الدين إن وجد</span>
+                    <input id="amount" type="number" class="form-control @error('amount') is-invalid @enderror"
+                        name="amount" value="{{ old('amount') }}"  autocomplete="amount" autofocus>
 
+                    @error('amount')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                    <span class="focus-input100"></span>
+                </div>
 
 
 
